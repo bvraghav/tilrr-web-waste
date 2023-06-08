@@ -275,6 +275,7 @@ Inside of =<template>= of the same SFC
 ** BVR Node Utils
 + [X] bvr-node-utils,
 
+Install
 #+BEGIN_SRC sh
   pnpm i gl:bvraghav/node_utils.git
 #+END_SRC
