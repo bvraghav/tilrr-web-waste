@@ -1,0 +1,14 @@
+#+TITLE: Firebase Authentication
+
+*TODO*
+
+https://firebase.google.com/docs/auth
+
+* Google Sign-in
+https://firebase.google.com/docs/auth/web/google-signin
+
+* Best practices
+https://firebase.google.com/docs/auth/web/redirect-best-practices
+
+* Authorisation
+https://firebase.google.com/docs/auth/admin/custom-claims
