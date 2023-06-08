@@ -152,7 +152,7 @@ around the unfit side. Eg.
   pnpm install @headlessui/vue@latest @headlessui/tailwindcss@latest
 #+end_src
 
-#+begin_src vue
+#+begin_src html
   <template>
     <Menu>
       <MenuButton>More</MenuButton>
@@ -193,6 +193,7 @@ around the unfit side. Eg.
 #+end_src
 
 ** Json-schema validator
+
 + [X] json-validator (ajv),
 
 #+begin_src sh
