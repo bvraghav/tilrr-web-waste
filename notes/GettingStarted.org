@@ -116,6 +116,7 @@ fundamentals like
 ** Vite SVG Loader
 + [X] svg icons
 
+Install
 #+begin_src sh
   pnpm i -D vite-svg-loader
 #+end_src
