@@ -1,28 +1,28 @@
 
 # Table of Contents
 
-1.  [VueJs with vite](#org108d701)
-    1.  [Expose to network](#orgd7e7900)
-2.  [UI](#orgbc356b9)
-    1.  [Tailwind](#orgc1cc823)
-    2.  [Xicons](#org7e6945b)
-        1.  [Installation](#org5aacd41)
-        2.  [Usage](#orgf098c03)
-    3.  [Vite SVG Loader](#org153f4a4)
-    4.  [HeadlessUI](#org0a35c89)
-3.  [Functional](#orge603313)
-    1.  [Vue Use](#org2e31319)
-    2.  [Json-schema validator](#orgdbf7307)
-    3.  [Vue Meta](#org840c42c)
-    4.  [BVR Node Utils](#org142d78f)
-    5.  [JSDOM](#orgdb4c5d4)
-4.  [Integrating Firebase](#org39e9e8e)
-    1.  [VueFire Wrapper](#orgae5722f)
-    2.  [Firebase API](#org22a728e)
-    3.  [Deployment](#orgc6bf3d5)
-    4.  [App Debug Token](#org7afdfd8)
-5.  [GLPK](#org5606f91)
-    1.  [Example](#org1599fc6)
+1.  [VueJs with vite](#org70f2520)
+    1.  [Expose to network](#org19e590e)
+2.  [UI](#org2d5d5d3)
+    1.  [Tailwind](#orgd1135fa)
+    2.  [Xicons](#orge130848)
+        1.  [Installation](#orge4417aa)
+        2.  [Usage](#orgd078fd6)
+    3.  [Vite SVG Loader](#orgb4c0bbc)
+    4.  [HeadlessUI](#org7eab2bc)
+3.  [Functional](#org6cb80fe)
+    1.  [Vue Use](#orgf1b36d7)
+    2.  [Json-schema validator](#orgc4ba4b4)
+    3.  [Vue Meta](#org1201692)
+    4.  [BVR Node Utils](#org9c57dbc)
+    5.  [JSDOM](#org8652d6c)
+4.  [Integrating Firebase](#org9580a4a)
+    1.  [VueFire Wrapper](#org0d1f225)
+    2.  [Firebase API](#orgb19a7fd)
+    3.  [Deployment](#org4626052)
+    4.  [App Debug Token](#orgdb6b19e)
+5.  [GLPK](#org43bc1c6)
+    1.  [Example](#orgfb4b9d6)
 
 I want to jump-start a vue-based project, so that the
 fundamentals like
@@ -43,7 +43,7 @@ fundamentals like
 -   [ ] jsdom
 
 
-<a id="org108d701"></a>
+<a id="org70f2520"></a>
 
 # VueJs with vite
 
@@ -59,7 +59,7 @@ fundamentals like
 -   [X] vitest,
 
 
-<a id="orgd7e7900"></a>
+<a id="org19e590e"></a>
 
 ## Expose to network
 
@@ -72,7 +72,7 @@ fundamentals like
     }
 
 
-<a id="orgbc356b9"></a>
+<a id="org2d5d5d3"></a>
 
 # UI
 
@@ -82,7 +82,7 @@ fundamentals like
 -   [ ] headlessui,
 
 
-<a id="orgc1cc823"></a>
+<a id="orgd1135fa"></a>
 
 ## Tailwind
 
@@ -112,14 +112,14 @@ fundamentals like
     import './assets/style.css'
 
 
-<a id="org7e6945b"></a>
+<a id="orge130848"></a>
 
 ## Xicons
 
 -   [X] icons (xicons),
 
 
-<a id="org5aacd41"></a>
+<a id="orge4417aa"></a>
 
 ### Installation
 
@@ -134,7 +134,7 @@ fundamentals like
          @vicons/utils
 
 
-<a id="orgf098c03"></a>
+<a id="orgd078fd6"></a>
 
 ### Usage
 
@@ -150,7 +150,7 @@ fundamentals like
     </template>
 
 
-<a id="org153f4a4"></a>
+<a id="orgb4c0bbc"></a>
 
 ## Vite SVG Loader
 
@@ -181,7 +181,7 @@ around the unfit side. Eg.
     <Logo width="80" class="rounded" />
 
 
-<a id="org0a35c89"></a>
+<a id="org7eab2bc"></a>
 
 ## HeadlessUI
 
@@ -219,7 +219,7 @@ Usage
     </script>
 
 
-<a id="orge603313"></a>
+<a id="org6cb80fe"></a>
 
 # Functional
 
@@ -230,22 +230,28 @@ Usage
 -   [ ] jsdom
 
 
-<a id="org2e31319"></a>
+<a id="orgf1b36d7"></a>
 
 ## Vue Use
 
 -   [X] vue-use
 
+Install
+
     pnpm i @vueuse/core
 
 
-<a id="orgdbf7307"></a>
+<a id="orgc4ba4b4"></a>
 
 ## Json-schema validator
 
 -   [X] json-validator (ajv),
 
+Install
+
     pnpm install ajv fluent-json-schema
+
+Usage
 
     import Ajv from 'ajv'
     import { S } from 'fluent-json-schema'
@@ -269,11 +275,13 @@ Usage
     if (!valid) console.log(validate.errors)
 
 
-<a id="org840c42c"></a>
+<a id="org1201692"></a>
 
 ## Vue Meta
 
 -   [X] vue-meta (page metadata manager),
+
+Install
 
     pnpm install vue-meta@3.0.0-alpha.10
 
@@ -309,7 +317,7 @@ Inside of `<template>` of the same SFC
 [Check out examples](https://github.com/nuxt/vue-meta/tree/next/examples) for more.
 
 
-<a id="org142d78f"></a>
+<a id="org9c57dbc"></a>
 
 ## BVR Node Utils
 
@@ -318,7 +326,7 @@ Inside of `<template>` of the same SFC
     pnpm i gl:bvraghav/node_utils.git
 
 
-<a id="orgdb4c5d4"></a>
+<a id="org8652d6c"></a>
 
 ## JSDOM
 
@@ -327,12 +335,12 @@ For testing purposes if required at all
     pnpm i jsdom
 
 
-<a id="org39e9e8e"></a>
+<a id="org9580a4a"></a>
 
 # Integrating Firebase
 
 
-<a id="orgae5722f"></a>
+<a id="org0d1f225"></a>
 
 ## VueFire Wrapper
 
@@ -341,7 +349,7 @@ For testing purposes if required at all
     pnpm install vuefire firebase
 
 
-<a id="org22a728e"></a>
+<a id="orgb19a7fd"></a>
 
 ## Firebase API
 
@@ -374,7 +382,7 @@ the products you'd like to use.
     const analytics = getAnalytics(app);
 
 
-<a id="orgc6bf3d5"></a>
+<a id="org4626052"></a>
 
 ## Deployment
 
@@ -393,7 +401,7 @@ App is available at:
 <https://tilrr-tile-waste.web.app/>
 
 
-<a id="org7afdfd8"></a>
+<a id="orgdb6b19e"></a>
 
 ## App Debug Token
 
@@ -401,7 +409,7 @@ App is available at:
 -   **Token:** 36CD9FBD-0136-4639-A857-8E56DA93E404
 
 
-<a id="org5606f91"></a>
+<a id="org43bc1c6"></a>
 
 # GLPK
 
@@ -410,7 +418,7 @@ App is available at:
     pnpm install glpk.js
 
 
-<a id="org1599fc6"></a>
+<a id="orgfb4b9d6"></a>
 
 ## Example
 

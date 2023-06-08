@@ -190,6 +190,8 @@ Usage
 
 ** Vue Use
 + [X] vue-use
+
+Install
 #+begin_src sh
   pnpm i @vueuse/core
 #+end_src
@@ -198,10 +200,12 @@ Usage
 
 + [X] json-validator (ajv),
 
+Install
 #+begin_src sh
   pnpm install ajv fluent-json-schema
 #+end_src
 
+Usage
 #+begin_src javascript
   import Ajv from 'ajv'
   import { S } from 'fluent-json-schema'
@@ -229,6 +233,7 @@ Usage
 ** Vue Meta
 + [X] vue-meta (page metadata manager),
 
+Install
 #+begin_src sh
   pnpm install vue-meta@3.0.0-alpha.10
 #+end_src
