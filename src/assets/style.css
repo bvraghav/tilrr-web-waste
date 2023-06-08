@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a { @apply text-amber-600 hover:text-amber-700 visited:text-yellow-700 } 
