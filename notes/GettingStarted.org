@@ -148,10 +148,12 @@ around the unfit side. Eg.
 ** HeadlessUI
 + [X] headlessui,
 
+Install  
 #+begin_src sh
   pnpm install @headlessui/vue@latest @headlessui/tailwindcss@latest
 #+end_src
 
+Usage
 #+begin_src html
   <template>
     <Menu>
