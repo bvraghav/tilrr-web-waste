@@ -1,28 +1,29 @@
 
 # Table of Contents
 
-1.  [VueJs with vite](#org5bb208e)
-    1.  [Expose to network](#org2c9b43f)
-2.  [UI](#org9f9718b)
-    1.  [Tailwind](#org4dd8f27)
-    2.  [Xicons](#orgd59d68c)
-        1.  [Installation](#org8a77aa5)
-        2.  [Usage](#org7513519)
-    3.  [Vite SVG Loader](#orgd77792d)
-    4.  [HeadlessUI](#org855f998)
-3.  [Functional](#org372d673)
-    1.  [Vue Use](#org9e3920a)
-    2.  [Json-schema validator](#org31dc1a1)
-    3.  [Vue Meta](#org7a818d7)
-    4.  [BVR Node Utils](#orgbecfa36)
-    5.  [JSDOM](#orga2cb78c)
-4.  [Integrating Firebase](#orga1144e4)
-    1.  [VueFire Wrapper](#org9213b82)
-    2.  [Firebase API](#org7f00841)
-    3.  [Deployment](#org25bf91b)
-    4.  [App Debug Token](#org9b02f82)
-5.  [GLPK](#org5f13172)
-    1.  [Example](#orgdd8dcd1)
+1.  [VueJs with vite](#org7c1e347)
+    1.  [Expose to network](#orga40b6dc)
+    2.  [Load Env (and Dotenv) in Vite Config](#orga3e0f83)
+2.  [UI](#org24905a2)
+    1.  [Tailwind](#orgaab49f1)
+    2.  [Xicons](#org6f361fa)
+        1.  [Installation](#orgcbd3536)
+        2.  [Usage](#org8c406d2)
+    3.  [Vite SVG Loader](#org51568bb)
+    4.  [HeadlessUI](#org19dc130)
+3.  [Functional](#org50d9d3b)
+    1.  [Vue Use](#org9c729b2)
+    2.  [Json-schema validator](#org2625167)
+    3.  [Vue Meta](#org3bb20ab)
+    4.  [BVR Node Utils](#org0a2a686)
+    5.  [JSDOM](#org194f50c)
+4.  [Integrating Firebase](#orgc435798)
+    1.  [VueFire Wrapper](#orgbb51a57)
+    2.  [Firebase API](#org5f74b5a)
+    3.  [Deployment](#org6350b96)
+    4.  [App Debug Token](#org1d040f1)
+5.  [GLPK](#orgc3fcd01)
+    1.  [Example](#orgdf21767)
 
 I want to jump-start a vue-based project, so that the
 fundamentals like
@@ -43,7 +44,7 @@ fundamentals like
 -   [ ] jsdom
 
 
-<a id="org5bb208e"></a>
+<a id="org7c1e347"></a>
 
 # VueJs with vite
 
@@ -59,7 +60,7 @@ fundamentals like
 -   [X] vitest,
 
 
-<a id="org2c9b43f"></a>
+<a id="orga40b6dc"></a>
 
 ## Expose to network
 
@@ -72,7 +73,23 @@ fundamentals like
     }
 
 
-<a id="org9f9718b"></a>
+<a id="orga3e0f83"></a>
+
+## Load Env (and Dotenv) in Vite Config
+
+    import { defineConfig, loadEnv } from 'vite';
+    
+    export default ({ mode }) => {
+        // Load app-level env vars to node-level env vars.
+        process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+    
+        return defineConfig({
+          // To access env vars here use process.env.TEST_VAR
+        });
+    }
+
+
+<a id="org24905a2"></a>
 
 # UI
 
@@ -82,7 +99,7 @@ fundamentals like
 -   [ ] headlessui,
 
 
-<a id="org4dd8f27"></a>
+<a id="orgaab49f1"></a>
 
 ## Tailwind
 
@@ -112,14 +129,14 @@ fundamentals like
     import './assets/style.css'
 
 
-<a id="orgd59d68c"></a>
+<a id="org6f361fa"></a>
 
 ## Xicons
 
 -   [X] icons (xicons),
 
 
-<a id="org8a77aa5"></a>
+<a id="orgcbd3536"></a>
 
 ### Installation
 
@@ -134,7 +151,7 @@ fundamentals like
          @vicons/utils
 
 
-<a id="org7513519"></a>
+<a id="org8c406d2"></a>
 
 ### Usage
 
@@ -150,7 +167,7 @@ fundamentals like
     </template>
 
 
-<a id="orgd77792d"></a>
+<a id="org51568bb"></a>
 
 ## Vite SVG Loader
 
@@ -183,7 +200,7 @@ around the unfit side. Eg.
     <Logo width="80" class="rounded" />
 
 
-<a id="org855f998"></a>
+<a id="org19dc130"></a>
 
 ## HeadlessUI
 
@@ -221,7 +238,7 @@ Usage
     </script>
 
 
-<a id="org372d673"></a>
+<a id="org50d9d3b"></a>
 
 # Functional
 
@@ -232,7 +249,7 @@ Usage
 -   [ ] jsdom
 
 
-<a id="org9e3920a"></a>
+<a id="org9c729b2"></a>
 
 ## Vue Use
 
@@ -243,7 +260,7 @@ Install
     pnpm i @vueuse/core
 
 
-<a id="org31dc1a1"></a>
+<a id="org2625167"></a>
 
 ## Json-schema validator
 
@@ -277,7 +294,7 @@ Usage
     if (!valid) console.log(validate.errors)
 
 
-<a id="org7a818d7"></a>
+<a id="org3bb20ab"></a>
 
 ## Vue Meta
 
@@ -319,7 +336,7 @@ Inside of `<template>` of the same SFC
 [Check out examples](https://github.com/nuxt/vue-meta/tree/next/examples) for more.
 
 
-<a id="orgbecfa36"></a>
+<a id="org0a2a686"></a>
 
 ## BVR Node Utils
 
@@ -330,7 +347,7 @@ Install
     pnpm i gl:bvraghav/node_utils.git
 
 
-<a id="orga2cb78c"></a>
+<a id="org194f50c"></a>
 
 ## JSDOM
 
@@ -339,12 +356,12 @@ For testing purposes if required at all
     pnpm i jsdom
 
 
-<a id="orga1144e4"></a>
+<a id="orgc435798"></a>
 
 # Integrating Firebase
 
 
-<a id="org9213b82"></a>
+<a id="orgbb51a57"></a>
 
 ## VueFire Wrapper
 
@@ -353,7 +370,7 @@ For testing purposes if required at all
     pnpm install vuefire firebase
 
 
-<a id="org7f00841"></a>
+<a id="org5f74b5a"></a>
 
 ## Firebase API
 
@@ -386,7 +403,7 @@ the products you'd like to use.
     const analytics = getAnalytics(app);
 
 
-<a id="org25bf91b"></a>
+<a id="org6350b96"></a>
 
 ## Deployment
 
@@ -405,7 +422,7 @@ App is available at:
 <https://tilrr-tile-waste.web.app/>
 
 
-<a id="org9b02f82"></a>
+<a id="org1d040f1"></a>
 
 ## App Debug Token
 
@@ -413,7 +430,7 @@ App is available at:
 -   **Token:** 36CD9FBD-0136-4639-A857-8E56DA93E404
 
 
-<a id="org5f13172"></a>
+<a id="orgc3fcd01"></a>
 
 # GLPK
 
@@ -422,7 +439,7 @@ App is available at:
     pnpm install glpk.js
 
 
-<a id="orgdd8dcd1"></a>
+<a id="orgdf21767"></a>
 
 ## Example
 

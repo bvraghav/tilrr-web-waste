@@ -45,6 +45,20 @@ fundamentals like
   }
 #+end_src
 
+** Load Env (and Dotenv) in Vite Config
+#+begin_src js2 :eval never
+  import { defineConfig, loadEnv } from 'vite';
+
+  export default ({ mode }) => {
+      // Load app-level env vars to node-level env vars.
+      process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+
+      return defineConfig({
+        // To access env vars here use process.env.TEST_VAR
+      });
+  }
+#+end_src
+
 * UI
 + [ ] css (tailwindcss),
 + [ ] svg icons
