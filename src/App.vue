@@ -27,7 +27,11 @@ useMeta({
     <span>Tilrr</span>
   </RouterLink>
 
-  <RouterLink to="/about">About</RouterLink>
+
+  <template v-if='$route.name != "home"'>
+    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/demo">Demo</RouterLink>
+  </template>
 </header>
 
 <div class="main-content mt-8">
