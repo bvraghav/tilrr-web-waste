@@ -2,6 +2,11 @@
 import { useMeta, useActiveMeta } from 'vue-meta'
 import { useSplits, SplitsNotEmptyError } from '@/use/splits'
 
+// ---------------------------------------------------
+// Componens
+// ----------------------------------------------------
+import Splits from '@/components/Splits.vue'
+
 useMeta({
   title: 'Demo',
 })
@@ -22,12 +27,10 @@ splits.value = [[2,3]]
 <main>
   <div>
     <p>This is a demo page.</p>
-    <template v-for="([s,n], i) in splits" key="i">
-      <p>s: {{ s }}, n: {{ n }}</p>
-    </template>
+    <Splits v-model='splits' />
     <a href="javscript:void(0)"
        @click.prevent="canonicaliseSplits({force:true})"
-       >Canonicalise Splits</a>
+       >Use Default Splits</a>
   </div>
 </main>
 </template>
