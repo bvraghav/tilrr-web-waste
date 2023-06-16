@@ -1,0 +1,139 @@
+#+TITLE: The Cutting Stock Problem
+
+* Methodlogy
+
+Given a tile layout drawing that is good for
+construction, for a specified tile of size $t_0$, we
+parse the requirement of /cut tiles/ by manually
+counting, recorded as an ordered set, represented as a
+vector $\mathbf{r}=[r_1,\ldots,r_n]^T$ corresponding to
+the ordered set of /cut tile/ sizes
+$\mathbf{t}=[t_1,\ldots,t_n]^T$. For a given project,
+the set of cut tile sizes may be predefined for the
+sake of convenience.
+
+Next we compute the set of permutations possible for
+tile cuts, eg. given a $12"\times 12"$ tile, we may
+either cut it as $2\times6"\times12"$ or
+$3\times 4"\times12"$ and so forth. In case there is a
+left-over piece, e.g. $1\frac12"\times 12"$ in case of
+a cut layout $(6"+4\frac12")\times 12"$, its size
+should be less than the least required cut-tile size
+$\min t_i$. Formally, this set is defined as follows,
+\begin{align}
+  A_{\pi} &\equiv
+            % \left\{\mathbf{a}\in\mathbb{Z}_{\geqslant0}^{n}
+            \left\{\mathbf{a}\in\mathbb{N}_0^{n}
+            : 0 \leqslant t_0-\mathbf{a}^T\mathbf{t}
+            < \min_{i\in[1,n]} t_i 
+            \right\},
+\end{align}
+
+where $\mathbb{N}_0$ refers to the set of whole
+numbers; and the condition is a mathematical
+representation /a)/ of the physical constraint
+that size of the left-over piece
+$t_0-\mathbf{a}^T\mathbf{t}$ is semi-positive, and
+/b)/ that of the greedy approach, so that if it is
+possible to cut a piece out of the left-over, then it
+shall be cut.
+
+Here each element $\mathbf{a}\in A_{\pi}$ represents a
+set of cut tiles that may be obtained from a tile of
+size $t_0$. This vector represents a /cut layout/ that
+defines how a tile may be cut to obtain smaller
+/cut-tiles/.  For mathematical convenience, let
+$A\in\mathbb{N}_0^{n\times m}$ be the matrix
+representation of the exhaustive set $A_{\pi}$ with
+cardinality $m$ so that $\mathbf{a}_i$'s are its column
+vectors. The wastage corresponding each /cut layout/
+may then be defined as,
+
+\begin{align}
+  \mathbf{w} &= t_0\mathbf{1} - A^T\mathbf{t} \in
+               \mathbb{R}^m 
+\end{align}
+
+where $\mathbf{1}\in\mathbb{R}^m$ is a vector of
+ones. Here, each component
+$w_i = t_0 - \mathbf{a}_i^T\mathbf{t}$ represents the
+leftover piece in the /cut-layout/ $\mathbf{a}_i$
+which contributes towards wastage.
+
+
+Let $\mathbf{x}\in\mathbb{R}^m$ be /the strategy/
+so that $x_i$ is the number of tiles that shall be cut
+according to layout $\mathbf{a}_i$. Then our objective
+is to find $\mathbf{x}$ so as to minimise the
+cumulative wastage.
+
+\begin{align}
+  \notag
+  \mathcal{L}_{\mathrm{cum}}
+  &= \mathbf{t}^T(A\mathbf{x}-\mathbf{r}) +
+    \mathbf{w}^T\mathbf{x} \\
+  \notag
+  &= \mathbf{t}^TA\mathbf{x} -
+    \mathbf{t}^T\mathbf{r} +
+    (t_0\mathbf{1} - A^T\mathbf{t})^T
+    \mathbf{x} \\
+  % \notag
+  % &= \mathbf{t}^TA\mathbf{x} -
+  %   \mathbf{t}^T\mathbf{r} +
+  %   t_0\mathbf{1}^T\mathbf{x} -
+  %   \mathbf{t}^TA\mathbf{x} \\
+  % \notag
+  \label{eq:cumulative-wastage}
+  \mathcal{L}_{\mathrm{cum}}
+  &= -\mathbf{t}^T\mathbf{r} +
+    t_0\mathbf{1}^T\mathbf{x}
+  % \\
+  % % 
+  % \label{eq:sum-tiles}
+  % \mathcal{L}_{\mathrm{cum}} \equiv \mathcal{L}
+  % &= \mathbf{1}^T\mathbf{x}
+\end{align}
+
+This is also intuitively convincing since the wastage
+is whatever exceeds the requirement, /i.e./
+$(\mathbf{t}^T\mathbf{r})$; and the only variable is
+the the count of tiles that shall be cut, /i.e./ $\sum
+t_0x_i = t_0\sum x_i =
+t_0\mathbf{1}^T\mathbf{x}$. Since the required length
+is a scalar constant and length of full tile is a
+scalar coefficient, their contribution to the partial
+gradients is inconsequential. *The cumulative wastage
+is, thus, equivalent to the total count of tiles that
+shall be cut.* Hence, we define the optimisation
+problem with an equivalent loss function as follows,
+
+\begin{align}
+  \label{eq:loss-fn}
+  \text{minimise} \quad
+  & \mathcal{L}=\mathbf{1}^T\mathbf{x} \\
+  %
+  \label{eq:constraint-non-neg-waste}
+  \text{subject to} \quad
+  & A\mathbf{x}-\mathbf{r} \geqslant 0; \\
+  %
+  \label{eq:constraint-pos-orthant}
+  & x_{k} \;\;\mathrm{integer} \geqslant 0
+    \quad \forall k \in [1,m]
+\end{align}
+
+It is noteworthy that
+1. from (Eq.~\ref{eq:constraint-pos-orthant}), the
+   feasible set is constrained to be the positive
+   orthant;
+2. since, by definition, $r_i,a_{ij}\in\mathbb{N}_0$,
+   the constraint in
+   (Eq.~\ref{eq:constraint-non-neg-waste}) defines an
+   convex cone which is a subset of the positive
+   orthant; and
+3. a level set of the loss function forms a hyperplane
+   with equal intercept on each component axis.
+
+We thus formulated a problem with guaranteed solution,
+and utilised the Python~\cite{zotero-2017} port of the
+GNU GLPK solver~\cite{zotero-2019} software for
+experimentation.

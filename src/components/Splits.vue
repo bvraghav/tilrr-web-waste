@@ -11,20 +11,23 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 const splits = ref([])
+const el = ref()
 
+// GET from parent
 watch(
   () => (props.modelValue),
-  (v) => {splits.value = v},
+  (v) => {
+    splits.value = v
+    console.log(el.value.querySelectorAll('input'))
+  },
 )
 
-// computed({
-//   get() { return props.modelValue },
-//   set(v) { emit('update:modelValue', v) },
-// });
-
+// EMIT Update
 watch(
   splits,
-  (v) => { emit('update:modelValue', v) }
+  (v) => {
+    emit('update:modelValue', v)
+  }
 )
 
 onMounted(() => {
@@ -35,23 +38,20 @@ onMounted(() => {
 
 <template>
 <section>
-  <div class="splits grid grid-cols-2 w-40 gap-1
-  text-gray-500 focus:text-gray-700">
+  <div class="splits grid grid-cols-2 gap-1"
+       ref="el">
+    <slot></slot>
     <template v-for="([s,n], i) in splits" key="i">
       <input type="number"
-             class="px-2 py-0.5 text-right bg-gray-100/75"
+             class="py-0.5 text-right bg-gray-100/75
+                    text-gray-500 focus:text-gray-700"
              v-model="splits[i][0]"/>
       <input type="number"
-             class="px-2 py-0.5 text-right bg-gray-100/75"
+             class="py-0.5 text-right bg-gray-100/75
+                    text-gray-500 focus:text-gray-700"
              v-model="splits[i][1]"/>
     </template>
   </div>
-
-  <p>
-    <a href="javascript:void(0)"
-       @click.prevent="$emit('update:modelValue', [...modelValue, [0,0]])"
-       >Add a split</a>
-  </p>  
 </section>
 
 </template>

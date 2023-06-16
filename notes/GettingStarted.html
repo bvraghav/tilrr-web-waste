@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>GettingStarted.html</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+</head>
+
+<body>
+
+<h1>Table of Contents</h1>
+<ol>
+<li><a href="#org7c1e347">VueJs with vite</a><ol>
+<li><a href="#orga40b6dc">Expose to network</a></li>
+<li><a href="#orga3e0f83">Load Env (and Dotenv) in Vite Config</a></li>
+</ol>
+</li>
+<li><a href="#org24905a2">UI</a><ol>
+<li><a href="#orgaab49f1">Tailwind</a></li>
+<li><a href="#org6f361fa">Xicons</a><ol>
+<li><a href="#orgcbd3536">Installation</a></li>
+<li><a href="#org8c406d2">Usage</a></li>
+</ol>
+</li>
+<li><a href="#org51568bb">Vite SVG Loader</a></li>
+<li><a href="#org19dc130">HeadlessUI</a></li>
+</ol>
+</li>
+<li><a href="#org50d9d3b">Functional</a><ol>
+<li><a href="#org9c729b2">Vue Use</a></li>
+<li><a href="#org2625167">Json-schema validator</a></li>
+<li><a href="#org3bb20ab">Vue Meta</a></li>
+<li><a href="#org0a2a686">BVR Node Utils</a></li>
+<li><a href="#org194f50c">JSDOM</a></li>
+</ol>
+</li>
+<li><a href="#orgc435798">Integrating Firebase</a><ol>
+<li><a href="#orgbb51a57">VueFire Wrapper</a></li>
+<li><a href="#org5f74b5a">Firebase API</a></li>
+<li><a href="#org6350b96">Deployment</a></li>
+<li><a href="#org1d040f1">App Debug Token</a></li>
+</ol>
+</li>
+<li><a href="#orgc3fcd01">GLPK</a><ol>
+<li><a href="#orgdf21767">Example</a></li>
+</ol>
+</li>
+</ol>
+<p>I want to jump-start a vue-based project, so that the
+fundamentals like</p>
+<ul>
+<li>[ ] routes (vue-router),</li>
+<li>[ ] linting (eslint),</li>
+<li>
+<p>[ ] vitest,</p>
+</li>
+<li>
+<p>[ ] css (tailwindcss),</p>
+</li>
+<li>[ ] svg icons</li>
+<li>[ ] icons (xicons),</li>
+<li>
+<p>[ ] headlessui,</p>
+</li>
+<li>
+<p>[ ] vue-use,</p>
+</li>
+<li>[ ] json-validator (ajv),</li>
+<li>[ ] vue-meta (page metadata manager),</li>
+<li>[ ] bvr-node-utils,</li>
+<li>[ ] jsdom</li>
+</ul>
+<p><a id="org7c1e347"></a></p>
+<h1>VueJs with vite</h1>
+<pre><code>export PROJECT_NAME=tilrr-web-app
+pnpm create vue@latest ${PROJECT_NAME}
+cd ${PROJECT_NAME}
+pnpm install
+pnpm format
+pnpm run dev
+</code></pre>
+<ul>
+<li>[X] routes (vue-router),</li>
+<li>[X] linting (eslint),</li>
+<li>[X] vitest,</li>
+</ul>
+<p><a id="orga40b6dc"></a></p>
+<h2>Expose to network</h2>
+<p><code>package.json</code></p>
+<pre><code>{
+  "scripts": {
+    "dev": "vite --host"
+  }
+}
+</code></pre>
+<p><a id="orga3e0f83"></a></p>
+<h2>Load Env (and Dotenv) in Vite Config</h2>
+<pre><code>import { defineConfig, loadEnv } from 'vite';
+
+export default ({ mode }) =&gt; {
+    // Load app-level env vars to node-level env vars.
+    process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+
+    return defineConfig({
+      // To access env vars here use process.env.TEST_VAR
+    });
+}
+</code></pre>
+<p><a id="org24905a2"></a></p>
+<h1>UI</h1>
+<ul>
+<li>[ ] css (tailwindcss),</li>
+<li>[ ] svg icons</li>
+<li>[ ] icons (xicons),</li>
+<li>[ ] headlessui,</li>
+</ul>
+<p><a id="orgaab49f1"></a></p>
+<h2>Tailwind</h2>
+<ul>
+<li>
+<p>[X] css (tailwindcss),</p>
+<p>pnpm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p</p>
+</li>
+</ul>
+<p><code>tailwind.config.js</code></p>
+<pre><code>export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
+}
+</code></pre>
+<p><code>src/assets/style.css</code></p>
+<pre><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+<p><code>src/main.js</code></p>
+<pre><code>// import './assets/main.css'
+import './assets/style.css'
+</code></pre>
+<p><a id="org6f361fa"></a></p>
+<h2>Xicons</h2>
+<ul>
+<li>[X] icons (xicons),</li>
+</ul>
+<p><a id="orgcbd3536"></a></p>
+<h3>Installation</h3>
+<pre><code>pnpm i -D @vicons/fluent \
+     @vicons/ionicons4   \
+     @vicons/ionicons5   \
+     @vicons/antd        \
+     @vicons/material    \
+     @vicons/fa          \
+     @vicons/tabler      \
+     @vicons/carbon      \
+     @vicons/utils
+</code></pre>
+<p><a id="org8c406d2"></a></p>
+<h3>Usage</h3>
+<pre><code>&lt;script setup&gt;
+import { Icon } from '@vicons/utils'
+import { Money16Regular } from '@vicons/fluent'
+&lt;/script&gt;
+
+&lt;template&gt;
+&lt;Icon&gt;
+  &lt;Money16Regular /&gt;
+&lt;/Icon&gt;
+&lt;/template&gt;
+</code></pre>
+<p><a id="org51568bb"></a></p>
+<h2>Vite SVG Loader</h2>
+<ul>
+<li>[X] svg icons</li>
+</ul>
+<p>Install</p>
+<pre><code>pnpm i -D vite-svg-loader
+</code></pre>
+<p><code>vite.config.js</code></p>
+<pre><code>import svgLoader from 'vite-svg-loader'
+
+export default defineConfig({
+  plugins: [vue(), svgLoader()]
+})
+</code></pre>
+<p><strong>Controlling The SVG Size (with @vicons/utils)</strong> <br />
+Use Xicons component <code>Icon</code> to wrap the svg</p>
+<pre><code>&lt;Icon size="80"&gt;&lt;Logo /&gt;&lt;/Icon&gt;
+</code></pre>
+<p><strong>Controlling The SVG Size (without @vicons/utils)</strong> <br />
+Use the HTML <code>width</code> and/ or <code>height</code> attribute to
+control the size. Specifying one of them will scale
+with no margin and preserve the aspect ratio, whereas
+specifying both will fit, i.e. leave equal margin space
+around the unfit side. Eg.</p>
+<pre><code>&lt;Logo width="80" class="rounded" /&gt;
+</code></pre>
+<p><a id="org19dc130"></a></p>
+<h2>HeadlessUI</h2>
+<ul>
+<li>[X] headlessui,</li>
+</ul>
+<p>Install  </p>
+<pre><code>pnpm install @headlessui/vue@latest @headlessui/tailwindcss@latest
+</code></pre>
+<p>Usage</p>
+<pre><code>&lt;template&gt;
+  &lt;Menu&gt;
+    &lt;MenuButton&gt;More&lt;/MenuButton&gt;
+    &lt;MenuItems&gt;
+      &lt;MenuItem v-slot="{ active }"&gt;
+        &lt;a :class='{ "bg-blue-500": active }' href="/account-settings"&gt;
+          Account settings
+        &lt;/a&gt;
+      &lt;/MenuItem&gt;
+      &lt;MenuItem v-slot="{ active }"&gt;
+        &lt;a :class='{ "bg-blue-500": active }' href="/account-settings"&gt;
+          Documentation
+        &lt;/a&gt;
+      &lt;/MenuItem&gt;
+      &lt;MenuItem disabled&gt;
+        &lt;span class="opacity-75"&gt;Invite a friend (coming soon!)&lt;/span&gt;
+      &lt;/MenuItem&gt;
+    &lt;/MenuItems&gt;
+  &lt;/Menu&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+  import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+&lt;/script&gt;
+</code></pre>
+<p><a id="org50d9d3b"></a></p>
+<h1>Functional</h1>
+<ul>
+<li>[ ] vue-use,</li>
+<li>[ ] json-validator (ajv),</li>
+<li>[ ] vue-meta (page metadata manager),</li>
+<li>[ ] bvr-node-utils,</li>
+<li>[ ] jsdom</li>
+</ul>
+<p><a id="org9c729b2"></a></p>
+<h2>Vue Use</h2>
+<ul>
+<li>[X] vue-use</li>
+</ul>
+<p>Install</p>
+<pre><code>pnpm i @vueuse/core
+</code></pre>
+<p><a id="org2625167"></a></p>
+<h2>Json-schema validator</h2>
+<ul>
+<li>[X] json-validator (ajv),</li>
+</ul>
+<p>Install</p>
+<pre><code>pnpm install ajv fluent-json-schema
+</code></pre>
+<p>Usage</p>
+<pre><code>import Ajv from 'ajv'
+import { S } from 'fluent-json-schema'
+
+const ajv = new Ajv()
+
+const schema = S.object()
+      .prop('foo', S.integer())
+      .prop('bar')
+      .required(['foo'])
+      .additionalProperties(false)
+
+const validate = ajv.compile(schema.valueOf())
+
+const data = {
+  foo: 1,
+  bar: "abc"
+}
+
+const valid = validate(data)
+if (!valid) console.log(validate.errors)
+</code></pre>
+<p><a id="org3bb20ab"></a></p>
+<h2>Vue Meta</h2>
+<ul>
+<li>[X] vue-meta (page metadata manager),</li>
+</ul>
+<p>Install</p>
+<pre><code>pnpm install vue-meta@3.0.0-alpha.10
+</code></pre>
+<p><code>src/main.js</code></p>
+<pre><code>import { createMetaManager } from 'vue-meta'
+app.use(createMetaManager())
+</code></pre>
+<p>Inside of a <code>&lt;script setup&gt;</code> of an SFC</p>
+<pre><code>import { useMeta, useActiveMeta } from 'vue-meta'
+
+const computedMeta = computed(() =&gt; ({
+  title: 'My Title',
+  description : `Counted ${counter.value} times`
+}))
+
+const { meta, onRemoved } = useMeta(computedMeta)
+
+onRemoved(() =&gt; {
+  // Do something as soon as this metadata is removed,
+  // eg because the component instance was destroyed
+})
+</code></pre>
+<p>Inside of <code>&lt;template&gt;</code> of the same SFC</p>
+<pre><code>&lt;metainfo&gt;
+  &lt;template v-slot:title="{content}"&gt;
+    {{ content }} | Brand
+  &lt;/template&gt;
+&lt;/metainfo&gt;
+</code></pre>
+<p><a href="https://github.com/nuxt/vue-meta/tree/next/examples">Check out examples</a> for more.</p>
+<p><a id="org0a2a686"></a></p>
+<h2>BVR Node Utils</h2>
+<ul>
+<li>[X] bvr-node-utils,</li>
+</ul>
+<p>Install</p>
+<pre><code>pnpm i gl:bvraghav/node_utils.git
+</code></pre>
+<p><a id="org194f50c"></a></p>
+<h2>JSDOM</h2>
+<p>For testing purposes if required at all</p>
+<pre><code>pnpm i jsdom
+</code></pre>
+<p><a id="orgc435798"></a></p>
+<h1>Integrating Firebase</h1>
+<p><a id="orgbb51a57"></a></p>
+<h2>VueFire Wrapper</h2>
+<p><a href="https://vuefire.vuejs.org/">https://vuefire.vuejs.org/</a></p>
+<pre><code>pnpm install vuefire firebase
+</code></pre>
+<p><a id="org5f74b5a"></a></p>
+<h2>Firebase API</h2>
+<pre><code>npm install firebase
+</code></pre>
+<p>Then, initialize Firebase and begin using the SDKs for
+the products you'd like to use.</p>
+<pre><code>// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAefhG8aB_NqLcKKn8PsJzhUCI2p64kiS4",
+  authDomain: "tilrr-tile-waste.firebaseapp.com",
+  databaseURL: "https://tilrr-tile-waste-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "tilrr-tile-waste",
+  storageBucket: "tilrr-tile-waste.appspot.com",
+  messagingSenderId: "866550474786",
+  appId: "1:866550474786:web:b9f9d41fdcfd183bfc027b",
+  measurementId: "G-PDDQNQZN8C"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</code></pre>
+<p><a id="org6350b96"></a></p>
+<h2>Deployment</h2>
+<pre><code>npm install -g firebase-tools
+
+# Login to Google
+firebase login
+
+# Initiate your project
+firebase init
+
+# Deploy web app
+firebase deploy
+</code></pre>
+<p>App is available at: <br />
+<a href="https://tilrr-tile-waste.web.app/">https://tilrr-tile-waste.web.app/</a></p>
+<p><a id="org1d040f1"></a></p>
+<h2>App Debug Token</h2>
+<ul>
+<li><strong>Name:</strong> TilrrTileWaste</li>
+<li><strong>Token:</strong> 36CD9FBD-0136-4639-A857-8E56DA93E404</li>
+</ul>
+<p><a id="orgc3fcd01"></a></p>
+<h1>GLPK</h1>
+<p><a href="https://github.com/jvail/glpk.js/">https://github.com/jvail/glpk.js/</a></p>
+<pre><code>pnpm install glpk.js
+</code></pre>
+<p><a id="orgdf21767"></a></p>
+<h2>Example</h2>
+<pre><code>const GLPK = require('glpk.js');
+const glpk = GLPK();
+const options = {
+  msglev: glpk.GLP_MSG_ALL,
+  presol: true,
+  cb: {
+    call: progress =&gt; console.log(progress),
+    each: 1
+  }
+};
+const res = glpk.solve({
+  name: 'LP',
+  objective: {
+    direction: glpk.GLP_MAX,
+    name: 'obj',
+    vars: [
+      { name: 'x1', coef: 0.6 },
+      { name: 'x2', coef: 0.5 }
+    ]
+  },
+  subjectTo: [
+    {
+      name: 'cons1',
+      vars: [
+        { name: 'x1', coef: 1.0 },
+        { name: 'x2', coef: 2.0 }
+      ],
+      bnds: { type: glpk.GLP_UP, ub: 1.0, lb: 0.0 }
+    },
+    {
+      name: 'cons2',
+      vars: [
+        { name: 'x1', coef: 3.0 },
+        { name: 'x2', coef: 1.0 }
+      ],
+      bnds: { type: glpk.GLP_UP, ub: 2.0, lb: 0.0 }
+    }
+  ]
+}, options);
+</code></pre>
+</body>
+</html>
