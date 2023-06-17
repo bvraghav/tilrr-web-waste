@@ -13,7 +13,7 @@ useMeta({
 <template>
 <metainfo>
   <template v-slot:title="{content}">
-    {{ content }} | Tilrr: Tile Waste
+    {{ content }} | Tilrr: Tile Waste Optimiser
   </template>
 </metainfo>
 
@@ -29,7 +29,6 @@ useMeta({
 
 
   <template v-if='$route.name != "home"'>
-    <RouterLink to="/about">About</RouterLink>
     <RouterLink to="/demo">Demo</RouterLink>
   </template>
 </header>

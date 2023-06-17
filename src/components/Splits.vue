@@ -46,12 +46,14 @@ onMounted(() => {
     <slot></slot>
     <template v-for="([s,n], i) in splits" key="i">
       <input type="number"
-             class="py-0.5 text-right bg-gray-100/75
-                    text-gray-500 focus:text-gray-700"
+             class="px-2 md:px-0 py-1 md:py-0.5
+                    text-right bg-gray-100/75
+                    text-gray-500 focus:text-gray-700"  
              v-model="splits[i][0]"
              @input="$emit('edited')" />
       <input type="number"
-             class="py-0.5 text-right bg-gray-100/75
+             class="px-2 md:px-0 py-1 md:py-0.5
+                    text-right bg-gray-100/75
                     text-gray-500 focus:text-gray-700"
              v-model="splits[i][1]"
              @input="$emit('edited')" />
