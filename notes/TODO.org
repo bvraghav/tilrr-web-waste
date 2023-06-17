@@ -43,3 +43,6 @@ CLOSED: [2023-06-17 Sat 10:30]
 
 ** DONE Mark dirty and reset solution
 CLOSED: [2023-06-17 Sat 10:51]
+
+** DONE Add waste %’s
+CLOSED: [2023-06-17 Sat 11:20]

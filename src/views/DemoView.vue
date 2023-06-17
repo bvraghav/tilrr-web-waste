@@ -34,19 +34,23 @@ const solution = ref(null)
 const numTiles = ref(0)
 
 const grossWaste = ref(null)
+const grossWastePc = ref(null)
 const netWaste = ref(null)
 const futureCount = ref(null)
 const futureLength = ref([])
 const computing = ref(false)
+const netWastePc = ref(null)
 
 const resetState = () => {
 
   solution.value = null
   numTiles.value = 0
   grossWaste.value = null
+  grossWastePc.value = null
   netWaste.value = null
   futureCount.value = []
   futureLength.value = null
+  netWastePc.value = ref(null)
   
 }
 
@@ -98,6 +102,16 @@ const solveLp = async () => {
     0.0
   )
 
+  grossWastePc.value = (
+    grossWaste.value / totalRequirement.value
+    * 100
+  ).toFixed(2)
+
+  netWastePc.value = (
+    netWaste.value / totalRequirement.value
+    * 100
+  ).toFixed(2)
+
   console.log(solution.value)
 }
 
@@ -134,7 +148,8 @@ const updateSplits = (v) => {
              class="py-0.5 text-right bg-gray-100/75
                     text-gray-500 focus:text-gray-700
                     col-span-3"
-             v-model="sizeMax"/>
+             v-model="sizeMax"
+             @input="resetState()"/>
       <input class="py-0.5 text-right bg-gray-100/75 pr-2
                     text-gray-500 focus:text-gray-700"
              v-model="unit"/>
@@ -200,11 +215,17 @@ const updateSplits = (v) => {
       <h4 class="col-span-3 italic">Gross waste ({{ unit }})</h4>
       <p>{{ grossWaste || '-' }}</p>
 
+      <h4 class="col-span-3 italic">Gross waste (%)</h4>
+      <p>{{ grossWastePc }}</p>
+
       <h4 class="col-span-3 italic">Total length cut for future ({{ unit }})</h4>
       <p>{{ futureLength || '-' }}</p>
 
       <h4 class="col-span-3 italic">Net waste ({{ unit }})</h4>
       <p>{{ netWaste || '-' }}</p>
+
+      <h4 class="col-span-3 italic">Net waste (%)</h4>
+      <p>{{ netWastePc }}</p>
     </div>
 
     <h4 class="border-b w-80 pt-4">Details</h4>
