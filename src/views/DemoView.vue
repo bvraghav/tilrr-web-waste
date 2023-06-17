@@ -188,7 +188,9 @@ const updateSplits = (v) => {
     <section>
       <button class="w-80 py-2 my-2 rounded font-bold
                      text-white text-center
-                     bg-orange-500 disabled:bg-orange-900/25"
+                     bg-orange-500
+                     disabled:bg-orange-900/50
+                     hover:bg-orange-400"
               :disabled="computing || solution"
               @click="solveLp()"
               >Solve for minimum waste</button>

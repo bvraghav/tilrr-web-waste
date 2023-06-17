@@ -50,4 +50,6 @@ CLOSED: [2023-06-17 Sat 11:20]
 ** DONE Use Landing Page = About + Demo’s CFA.
 CLOSED: [2023-06-17 Sat 16:27]
 
+** DONE Hover state feedback for buttons and CFA
+CLOSED: [2023-06-17 Sat 16:41]
 

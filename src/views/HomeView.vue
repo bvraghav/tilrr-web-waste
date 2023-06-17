@@ -26,7 +26,9 @@
     <p><RouterLink
          to="/demo"
          class="w-80 py-2 my-2 rounded font-bold block
-                visited:text-white text-white text-center bg-orange-500"
+                visited:text-white hover:text-white
+                text-white text-center bg-orange-500
+                hover:bg-orange-400"
          >Go to Demo</RouterLink></p>
 
     <p class="border-b mt-6 mb-2"
