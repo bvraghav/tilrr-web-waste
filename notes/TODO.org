@@ -1,0 +1,45 @@
+#+TITLE: TODO
+
+* <2023-06-17 Sat>
+
+** DONE Justify links
+CLOSED: [2023-06-17 Sat 09:42]
+
+
+#+DOWNLOADED: screenshot @ 2023-06-17 09:10:58
+[[file:org-download-images/<2023-06-17_Sat>/2023-06-17_09-10-58_screenshot.png]]
+
+
+** Add summary information
+
+*** DONE Summary Heading
+CLOSED: [2023-06-17 Sat 10:28]
+
+Should be a “Summary,” like there’s “Details”
+
+*** DONE More summary
+CLOSED: [2023-06-17 Sat 10:29]
+
+1. Gross waste $= -\mathbf{t}^T\mathbf{r} +
+   t_0\mathbf{1}^T\mathbf{x}$
+2. Net waste $=\mathbf{w}^T\mathbf{x}$
+3. Net cuts for future use
+   $=\mathbf{t}^T(A\mathbf{x}-\mathbf{r})$
+
+** DONE Add “Tiles for future”
+CLOSED: [2023-06-17 Sat 10:29]
+
+Cut tiles available for future use
+
+$[\mathbf{t},A\mathbf{x}-\mathbf{r}]$
+
+** DONE defineEmits no-import
+CLOSED: [2023-06-17 Sat 10:30]
+
+#+begin_example
+  [@vue/compiler-sfc] `defineEmits` is a compiler macro
+  and no longer needs to be imported.
+#+end_example
+
+** DONE Mark dirty and reset solution
+CLOSED: [2023-06-17 Sat 10:51]

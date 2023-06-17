@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onMounted, defineEmits } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 
 const props = defineProps({
   modelValue : {
@@ -8,7 +8,10 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits([
+  'update:modelValue',
+  'edited',
+])
 
 const splits = ref([])
 const el = ref()
@@ -45,11 +48,13 @@ onMounted(() => {
       <input type="number"
              class="py-0.5 text-right bg-gray-100/75
                     text-gray-500 focus:text-gray-700"
-             v-model="splits[i][0]"/>
+             v-model="splits[i][0]"
+             @input="$emit('edited')" />
       <input type="number"
              class="py-0.5 text-right bg-gray-100/75
                     text-gray-500 focus:text-gray-700"
-             v-model="splits[i][1]"/>
+             v-model="splits[i][1]"
+             @input="$emit('edited')" />
     </template>
   </div>
 </section>

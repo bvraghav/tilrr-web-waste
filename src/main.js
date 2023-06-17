@@ -7,15 +7,19 @@ import { createMetaManager } from 'vue-meta'
 
 import App from '@/App.vue'
 import router from '@/router'
-import firebase from '@/firebase'
+// import firebase from '@/firebase'
 
-const app = createApp(App)
+(async() => {
+  const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.use(createMetaManager())
-app.use(firebase)
+  app.use(createPinia())
+  app.use(router)
+  app.use(createMetaManager())
+  // app.use(firebase)
 
-await router.isReady()
+  await router.isReady()
 
-app.mount('#app')
+  app.mount('#app')
+  
+})()
+
