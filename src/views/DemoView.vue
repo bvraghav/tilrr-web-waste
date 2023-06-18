@@ -24,6 +24,7 @@ const {
   addSplit,
   sanitiseSplits,
   canonicaliseSplits,
+  randomiseSplits,
   pushToSplits,
 } = useSplits()
 
@@ -159,32 +160,35 @@ const updateSplits = (v) => {
   </section>
 
   <section>
-    <h3 class="text-lg italic border-b w-80 mb-3 mt-5"
-        >User Split Data</h3>
+    <h3 class="text-lg italic border-b w-80 mb-1 mt-5"
+        >Cut Size Requirement</h3>
+
     <Splits :modelValue='splits'
             @update:modelValue="updateSplits"
             @edited="resetState"
             class="mb-4 w-80">
       <h4 class="text-right"
-          >Cut Size ({{ unit }})</h4>
+          >Cut Size ({{ unit }}) <br/>
+        <a href="javscript:void(0)"
+           class="text-sm"
+           @click.prevent="canonicaliseSplits({force:true}); resetState()"
+           >(Canonicalise)</a>
+      </h4>
       <h4 class="text-right"
-          >Count</h4>
+          >Required Count <br/>
+        <a href="javscript:void(0)"
+           class="text-sm"
+           @click.prevent="randomiseSplits(); resetState()"
+           >(Randomise)</a></h4>
+      <h4 class="col-span-2 border-b mb-1"/>
     </Splits>
 
     <section class="flex flex-row flex-nowrap
-                    justify-between w-80 gap-4 text-sm
+                    justify-end w-80 gap-4 text-sm
                     italic">
       <p><a href="javascript:void(0)"
             @click.prevent="addSplit()"
             >Add a split</a></p>
-
-      <p><a href="javascript:void(0)"
-            @click.prevent="sanitiseSplits()"
-            >Sanitise splits</a></p>
-
-      <p><a href="javscript:void(0)"
-            @click.prevent="canonicaliseSplits({force:true}); resetState()"
-            >Use default splits</a></p>
     </section>
 
     <section>

@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@bvraghav/node_utils':
     specifier: gitlab:bvraghav/node_utils
-    version: gitlab.com/bvraghav/node_utils/064cbe25418fa9eb38b74bac69a8b5c2e77e180a
+    version: gitlab.com/bvraghav/node_utils/47cfa29b6de32a1c3bf84b41bba02f5f158f76ed
   '@headlessui/vue':
     specifier: ^1.7.14
     version: 1.7.14(vue@3.3.4)
@@ -3760,8 +3760,8 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  gitlab.com/bvraghav/node_utils/064cbe25418fa9eb38b74bac69a8b5c2e77e180a:
-    resolution: {tarball: https://gitlab.com/api/v4/projects/bvraghav%2Fnode_utils/repository/archive.tar.gz?ref=064cbe25418fa9eb38b74bac69a8b5c2e77e180a}
+  gitlab.com/bvraghav/node_utils/47cfa29b6de32a1c3bf84b41bba02f5f158f76ed:
+    resolution: {tarball: https://gitlab.com/api/v4/projects/bvraghav%2Fnode_utils/repository/archive.tar.gz?ref=47cfa29b6de32a1c3bf84b41bba02f5f158f76ed}
     name: '@bvraghav/node_utils'
     version: 0.0.1
     dependencies:

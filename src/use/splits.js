@@ -1,5 +1,6 @@
 import { ref, computed, watch } from 'vue'
 import { range, unzip, zip } from '@bvraghav/node_utils'
+import { Sampler, Ops } from '@bvraghav/node_utils'
 
 export class SplitsNotEmptyError extends Error {}
 
@@ -7,6 +8,8 @@ export function useSplits() {
 
   const splits = ref([])
   const sizeMax = ref(0)
+  const nReqMax = ref(1000)
+  const nReqMin = ref(100)
 
   const cuts = ref(0)
   const requirements = ref(0)
@@ -35,6 +38,23 @@ export function useSplits() {
       .VITE_DEMO_DEFAULT_SPLITS
       .split(',')
       .map((s) => [parseFloat(s), 0])
+  }
+
+  const randomiseSplits = () => {
+    const S = new Sampler()
+    const l = requirements.value.length
+
+    // E[R] ~= 0.5 => sum(R) ~= len(R) * E[R]
+    const z = (1/(0.5 * l)) * S.randRange(
+      nReqMin.value,
+      nReqMax.value
+    )
+
+    const R = Array(l).fill(0).map(
+      () => Math.floor(S.random() * z)
+    )
+
+    splits.value = zip(cuts.value, R)
   }
 
   const pushToSplits = () => {
@@ -66,6 +86,7 @@ export function useSplits() {
     // Methods
     addSplit,
     sanitiseSplits,
+    randomiseSplits,
     canonicaliseSplits,
     pushToSplits,
   }
