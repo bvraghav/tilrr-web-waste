@@ -53,3 +53,22 @@ CLOSED: [2023-06-17 Sat 16:27]
 ** DONE Hover state feedback for buttons and CFA
 CLOSED: [2023-06-17 Sat 16:41]
 
+* <2023-06-18 Sun>
+
+** Dichotomise split actions
+
+Modify-in-group actions:
++ Use default cut-sizes
++ Randomise splits
++ Clear redundancies and impossibilities
+
+
+Single-record actions:
++ Add a split
+
+** DONE Sanitise splits
+CLOSED: [2023-06-18 Sun 09:08]
+
+Remove all rows bearing a cut-size that has non-zero
+quotient upon division by full-tile-size.
+

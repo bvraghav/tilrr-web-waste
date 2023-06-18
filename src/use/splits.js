@@ -6,6 +6,7 @@ export class SplitsNotEmptyError extends Error {}
 export function useSplits() {
 
   const splits = ref([])
+  const sizeMax = ref(0)
 
   const cuts = ref(0)
   const requirements = ref(0)
@@ -49,7 +50,7 @@ export function useSplits() {
       return
 
     splits.value = splits.value.filter(
-      ([s,n]) => (0 < n && 0 < s)
+      ([s,n]) => (0 < n && 0 < s && s < sizeMax.value)
     )
 
     if (splits.value.length < 1)
@@ -60,6 +61,7 @@ export function useSplits() {
   return {
     // Data
     splits, totalRequirement, cuts, requirements,
+    sizeMax,
 
     // Methods
     addSplit,

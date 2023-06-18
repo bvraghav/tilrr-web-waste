@@ -18,6 +18,7 @@ useMeta({
 const {
   // Data
   splits, totalRequirement, cuts, requirements,
+  sizeMax,
 
   // Methods
   addSplit,
@@ -27,7 +28,6 @@ const {
 } = useSplits()
 
 
-const sizeMax = ref(24)
 const unit = ref("in")
 
 const solution = ref(null)
@@ -116,6 +116,8 @@ const solveLp = async () => {
 }
 
 onMounted(async () => {
+  sizeMax.value = 24
+  unit.value = "in"
   splits.value = [
     [1.5, 12],
     [3, 24],
@@ -181,7 +183,7 @@ const updateSplits = (v) => {
             >Sanitise splits</a></p>
 
       <p><a href="javscript:void(0)"
-            @click.prevent="canonicaliseSplits({force:true})"
+            @click.prevent="canonicaliseSplits({force:true}); resetState()"
             >Use default splits</a></p>
     </section>
 
